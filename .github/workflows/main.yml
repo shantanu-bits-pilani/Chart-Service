@@ -63,7 +63,6 @@ jobs:
         run: |
           kubectl create deployment chatservice --image=shantanu99/chatservice:${{ steps.meta.outputs.tags }}
           kubectl expose deployment chatservice --type=LoadBalancer --port=81
-          kubectl rollout status deployment/chatservice
       - name: Test the deployment
         run: |
           minikube service chatservice --url
