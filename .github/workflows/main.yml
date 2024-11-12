@@ -49,7 +49,7 @@ jobs:
         run: |
           minikube start --driver=docker
           minikube status
-
+          
       - name: Set up kubectl for Minikube
         run: |
           alias kubectl='minikube kubectl --'
@@ -66,12 +66,14 @@ jobs:
           kubectl create deployment chatservice --image=shantanu99/chatservice:${{ steps.meta.outputs.tags }}
           kubectl expose deployment chatservice --type=LoadBalancer --port=8080
           
+      - name: Check Pod Status in Minikube (in GitHub Actions)
+        run: |
+          kubectl get pods --namespace=default
+          kubectl describe deployment chatservice --namespace=default
+          kubectl get services --namespace=default
+          minikube service chatservice --url
+          
       - name: Start Kubernetes Dashboard (manually triggered)
         run: |
           echo "Starting Minikube dashboard..."
           minikube dashboard &
-
-      - name: Get Minikube Service URL
-        run: |
-          echo "Retrieving Minikube service URL..."
-          minikube service chatservice --url
