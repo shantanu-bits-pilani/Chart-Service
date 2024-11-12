@@ -64,7 +64,7 @@ jobs:
       - name: Pull Docker image to Minikube
         run: |
           kubectl create deployment chatservice --image=shantanu99/chatservice:${{ steps.meta.outputs.tags }}
-          kubectl expose deployment chatservice --type=LoadBalancer --port=81
+          kubectl expose deployment chatservice --type=LoadBalancer --port=8080
           
       - name: Start Kubernetes Dashboard (manually triggered)
         run: |
