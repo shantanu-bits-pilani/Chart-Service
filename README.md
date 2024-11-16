@@ -1,9 +1,16 @@
 # Chat Service
 
 ## Description
-The Chat Service handles sending and receiving messages.
+The Chat Service handles messaging between users. It provides endpoints for sending and retrieving messages.
+
+## Dependencies
+- Flask=2.1.1
+- pymongo=4.0.1
+- Werkzeug==2.1.1
 
 ## Endpoints
+- `POST /send`: Send a message.
+- `GET /messages/<receiver>`: Retrieve messages for a specific receiver.
 
 ### Send Message
 - **URL:** `/send`
